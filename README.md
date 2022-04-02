@@ -337,7 +337,7 @@ We are going to create GraphQL API so that the front end will use this API to re
 cloud resources, through AppSync. With GraphQL, we will device required queries to handle exact
 data with AppSync in online and offline scenarios.
 
-````
+```
 $ amplify add api
 ```
 
@@ -349,6 +349,7 @@ Here, we have chosen default authorization type to be Amazon Cognito User Pool, 
 identity our logged in user, however, we will require API keys based usages because not logged in
 users should also be able to use our application in limited manners. In the above configuration, we
 missed to add API keys as authorization type so, we are going to update this API:
+
 ```
 $ amplify update api
 ```
