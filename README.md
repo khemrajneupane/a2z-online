@@ -37,7 +37,7 @@ We will be talking about architecture design of the product that will be built t
 step guideline, then setting-up the required tools and creating a example project- ‘a2z-online’.
 
 
-**1.1 Architecture Design**
+**2.1 Architecture Design**
 
 The application ‘a2z’ is targeted to cover various online businesses in the future, however for now
 its scope is related to online restaurant business. Where food menus are displayed online and
@@ -69,30 +69,41 @@ order and make payments. Once the payment is successful, it places an order and 
 in the DynamoDB. The entire process is very simple and concentrated on GraphQL AppSync API.
 
 
-**1.2 Tools**
+**2.2 Tools**
 
-Node & NPM: Node.js and NPM need to be installed if they are not already installed where better
+__Node & NPM:__ Node.js and NPM need to be installed if they are not already installed where better
 compatibility for node -v should be at least 10.x and npm -v 1.x or greater.
 
-AWS Account: If you are creating AWS Account for the first time you can get free tier option for 12
+__AWS__ Account: If you are creating AWS Account for the first time you can get free tier option for 12
 months. It is recommended that create an alias account with Administrative Access or use the
 account that is generated when amplify is being configured as below, but in any case, it is highly
 advised to turn on MFA to secure unauthorized login.
 
 
-**1.3 Creating Project (a2z-online)**
+**2.3 Creating Project (a2z-online)**
 
 Initialize a React project or clone the current repo: https://github.com/khemrajneupane/a2z-
 online.git.
 For our purpose, it is better and easier to clone the repo and start the app.
+
+```
 git clone https://github.com/khemrajneupane/a2z-online.git
 cd a2z-online
 
-AWS CLI: It is installed globally with the following command:
+```
+
+__AWS CLI:__ It is installed globally with the following command:
+
+```
 npm install -g @aws-amplify/cli
+
+```
 Once the CLI is installed, let’s configure Amplify:
+
+```
 amplify configure
 
+```
 
 Figure 2. Amplify Configure
 
@@ -110,7 +121,9 @@ project.
 
 
 Now we can initialize this project with AWS Amplify:
+```
 $ amplify init
+```
 This command will walk us through a number of processes to initializing amplify into our React
 project and generating information. Most of the processes are asking project information from us,
 however, if we don’t provide any, Amplify is intelligent enough to prepare more suitable
@@ -127,10 +140,14 @@ For authentication method, it is possible to choose AWS access keys or AWS profi
 have already set-up AWS-profile user in our local computer, so it is an easier and better option. If
 we want or need, can check all our saved aws credentials in local computer in ‘.aws’ folder:
 
+```
 $ cd .aws
 $ ls
+```
 amplify/ config credentials
+```
 $ vim config
+```
 
 
 Now, when we are asked to choose the profile, the CLI commands will display all the profile names
@@ -170,7 +187,7 @@ one in the root level, which is ‘amplify’ and the other is ‘aws-exports.js
 Figure 10. Amplify initialization also creates a folder containing different backend for different
 resources, in the project’s directory ‘A2Z-ONLINE’
 
-amplify folder
+**amplify folder**
 It contains all the codes related to back-end and various configurations. The config file contains
 local AWS and environment configuration related json key-value pairs, along with project
 configuration information which we had provided while initializing the project earlier on.
@@ -180,7 +197,8 @@ Figure 11. Automatic generation of backend config. codes after Amplify initializ
 The back-end folder will contain all the GraphQL schema for AppSync API which we will create
 later. It will also contain all the cloud formation .yaml files later when we command CLI for adding
 more resources.
-aws-exports.js
+
+**aws-exports.js**
 This file is created inside the ‘src’ folder. It will contain all the key-value pairs generated
 automatically; we don’t need to modify anything there.
 
@@ -188,12 +206,14 @@ automatically; we don’t need to modify anything there.
 Figure 12. Amplify generated aws-exports.js file inside src directory
 
 
-**1.4 Adding Authentication**
+**2.4 Adding Authentication**
 
 By now, the project has been initialized and all the necessary configurations for Amplify back-end
 and react front-end is completed; next up we add authentication for login, logout and signup by
 using Amplify’s ready-made Cognito Userpool authentication flow.
+```
 $ amplify add auth
+```
 There are default and federated login options to choose for this configuration. There are federated
 login possibilities with Facebook, Google, Apple, Amazon, SAML, OpenID. However, for the
 purpose of this application, we go for default configuration with username, password and phone
@@ -207,7 +227,9 @@ necessary back-end in our local and provision it in the cloud.
 
 Figure 14. Amplify CLI creating backend code in the project folder, necessary for authentication
 
+```
 $ amplify push
+```
 This process will create many resources in the cloud. It will automatically create SNSRoles,
 Cognito UserPool and lambda functions which we don’t require to do manually.
 − CREATE_COMPLETE SNSRole AWS::IAM::Role Sun Oct 24 2021 15:42:3\ Updating
@@ -241,10 +263,12 @@ the link and verify it with phone number or email then it will be registered lik
 Figure 18. AWS Cognito UserPool registering new user
 
 
-**1.5 Creating S3 bucket**
+**2.5 Creating S3 bucket**
 
 We need to store all our project and dish images or any other images.
+```
 $ amplify add storage
+```
 With this command, we will create s3 bucket to save our images. This bucket should be accessible
 for both guest and authenticated users. Even the users who are not logged in should be able to
 view the images or menus in the application. This bucket should store content types as images,
@@ -268,13 +292,16 @@ project: DishImages
 ? Do you want to add a Lambda Trigger for your S3 Bucket? No
 
 
-**1.6 Adding lambda functions**
+**2.6 Adding lambda functions**
 
 In our application, the lambda functions are required when dish order and dish payments are
 made. The user will press order button then two things will happen- the product order is registered,
 and payment is made, so we will create ‘paymentLambda’ and ‘orderLambda’ functions that work
 as pipeline resolvers in AppSync.
+
+```
 $ amplify add function
+```
 With the above command, we first create:
 
 - ‘paymentLambda’ function, as serverless function capability
@@ -293,7 +320,10 @@ Figure 19. Amplify add function CLI command creating basic Lambda function
 This lambda handler simply returns HTTP status code 200 and string ‘Hello from Lambda!’. Good
 thing about this amplify is also that we can mock or test this function locally without creating
 resources in the cloud as:
+
+```
 $ amplify mock function paymentLambda
+```
 
 Figure 20. Amplify mocking Lambda function
 
@@ -301,12 +331,15 @@ or $ amplify invoke paymentLambda however, this version of amplify command is de
 still outputs the results.
 
 
-**1.7 GraphQL API**
+**2.7 GraphQL API**
 
 We are going to create GraphQL API so that the front end will use this API to request data from
 cloud resources, through AppSync. With GraphQL, we will device required queries to handle exact
 data with AppSync in online and offline scenarios.
+
+````
 $ amplify add api
+```
 
 Figure 21. Amplify adding GraphQL API
 
@@ -316,7 +349,9 @@ Here, we have chosen default authorization type to be Amazon Cognito User Pool, 
 identity our logged in user, however, we will require API keys based usages because not logged in
 users should also be able to use our application in limited manners. In the above configuration, we
 missed to add API keys as authorization type so, we are going to update this API:
+```
 $ amplify update api
+```
 With this command, we have options to either ‘Walkthrough all configurations’ or reset
 authorization types only. In this case, we have chosen to walkthrough all configs, as follow:
 
@@ -328,20 +363,23 @@ schema template:
 
 Figure 23. Basic GraphQL schema
 
-**1.8 Mock API**
+**2.8 Mock API**
 
 As a good practice, it is better to run the mock test of the GraphQL API before we actually deploy
 or push to cloud for resources creation. So, we can save our resources without having to run them
 into our billable account. Running the mock version will allow us to test the API locally by running
 local graphical editor on a certain port. In order to perform the CRUD operations, it will use SQLite
 in-memory-database.
+
+```
 $ amplify mock api
+```
 
 Figure 24. Configuring for Amplify GraphQL API mocking
 
 We have configured the mock environment as above and choosen language, queries, mutation
 and subscription file location with simple nesting. The GraphQL editor will be running in
-[http://localhost:20002/,](http://localhost:20002/,) where we can perform all sorts of GraphQL operations for testing purposes.
+[http://localhost:20002/](http://localhost:20002/) where we can perform all sorts of GraphQL operations for testing purposes.
 
 Figure 25. GraphQL mocking in [http://localhost:](http://localhost:)
 
@@ -350,7 +388,7 @@ In order to run this mock environment, the above command will create local resou
 project: inside src/graphql, it creates all the required mutaions, quiries and subscription files along
 with adding GraphQL endpoint in the aws-exports.js file.
 
-**1.9 GraphQL Schema**
+**2.9 GraphQL Schema**
 
 We create GraphQL Schema to define our application’s data model and enhance it by adding
 GraphQL directives to perform more actions. Out of 9 different kinds of directives, we will be using
@@ -365,7 +403,7 @@ Directives, 2021):
 We will create 4 types of schemas as ‘Dish’,’ DishOrder’, ‘Order’ and custom mutation type
 ‘processOrder’:
 
-**1.9.1 Type Dish**
+**2.9.1 Type Dish**
 
 Figure 26. The GraphQL schema ‘Dish’ type
 
@@ -380,7 +418,7 @@ Likewise, @model directive is used to create tables for Dish type in the DynamoD
 Velocity Template File that handles CRUD operations. Again, we are not allowing real-time
 updates yet, so subscription is set to null.
 
-**1.9.2 Type Order**
+**2.9.2 Type Order**
 
 This is the second main schema after Dish. It contains user info., ordered dish, date, price and id.
 The auth rules implied:
@@ -395,7 +433,7 @@ We also add @key directive to identify the user who makes the order and also it 
 fields to make search on this particular order.
 
 
-**1.9.3 Type Mutation**
+**2.9.3 Type Mutation**
 
 This is custom mutation type that is required to execute 2 lambda functions: ‘paymentLambda’ and
 ‘orderLambda’ and also to contain order fields. When the user selects the dishes, puts them in the
@@ -429,7 +467,7 @@ From this payload, it will extract the details to register the order in OrderTab
 DishOrder bridge table.
 
 
-**1.9.4 Type DishOrder**
+**2.9.4 Type DishOrder**
 
 This is a N:M (many-to-many) relationship scenario where every order for dishes is presented in
 this third table. This type is required because a user can have many orders for many dishes.
@@ -449,7 +487,10 @@ When we check the status as ‘ _amplify status’_ CLI command, we will get a t
 categories, resource names, operation which helps us to understand which resources have been
 created, updated, deleted etc. Now that most of our resources have been created, we can finally
 push it to the cloud.
+
+```
 $ amplify push
+```
 Since we last created GraphQL API, we have not pushed the code to cloud so now, it will
 automatically crate ‘graphql’ folder inside ‘src’ folder that contains all GraphQL mutation.js,
 queries.js and schema.json files along with the greatest number of other resources in the cloud.
@@ -462,7 +503,7 @@ In this section, we will delve deep into the front-end part of the React project
 CRUD operations are being called from different components.
 
 
-**2.1 Submitting food menu from admin page:**
+**3.1 Submitting food menu from admin page:**
 
 Admin page is designed to create dish entries in the database. This page requires login as admin
 because we have used AmplifyAuthenticator component imported from aws-amplify/ui-react. Any
@@ -536,12 +577,14 @@ We need to select reading access levels for ‘AdminGetUser’.
 Likewise, we have ‘orderLambda’ function that needs to have access to the DynamoDB. Hence,
 we can attach one more IAM policy to this function with DynamoDB full access.
 
-**2.2 Cart**
+**3.2 Cart**
 
 Items can be picked from home page or all dishes page and added to the cart for payment. The
 cart is an array that contains cart items as:
 
-```const cartItems = [...cart, { id, title, image, price, amount: 1 }];```
+```
+const cartItems = [...cart, { id, title, image, price, amount: 1 }];
+```
 
 The cart contains checkout form component which accepts the orderdetails containing token. If the
 token is present, then the react useEffect hook executes the checkout function.
@@ -556,7 +599,7 @@ history.push("/");
 }, [checkout, clearCart, history, orderDetails]);
 ```
 
-**2.3 Stripe Payment:**
+**3.3 Stripe Payment:**
 
 Stripe payment is very easy to integrate into React and Node project with its simple-to-use API and
 rich documentation. It has free test mode that is so useful to test the payment and transaction
@@ -565,8 +608,7 @@ its public and secret keys.
 
 The project follows stripe setup and code templates from the stripe documentation that can be
 followed herein:
-https://stripe.com/docs/payments/accept-a-payment-charges?platform=web#add-stripe.js-and-
-elements-to-your-page.
+https://stripe.com/docs/payments/accept-a-payment-charges?platform=web#add-stripe.js-and-elements-to-your-page.
 In this project, we have used CardElement imported from react-stripe library to build the payment
 form with some custom styles and error messages. The Checkout component is responsible for
 sending the order details to the stripe dashboard. Stripe element is wrapped inside the
@@ -576,6 +618,8 @@ AmplifyAuthenticator component so that the logged in user can make this order. T
 provider allows you to use Element components and access the Stripe object. To use Elements
 provider, call loadStripe from @stripe/stripd-js with your publishable key. The loadStripe function
 asynchronously loads the Stripe.js script and initializes a Stripe object. (Stripe docs, 2022)
+
+```
 const stripeKey= process.env.REACT_APP_STRIPE_KEY;
 const stripePromise = loadStripe(stripeKey);
 <AmplifyAuthenticator>
@@ -586,6 +630,8 @@ const stripePromise = loadStripe(stripeKey);
 </section>
 </Elements>
 </AmplifyAuthenticator>
+
+````
 
 Once the payment is successful, we can log in to the stripe dashboard and make sure it is
 registered there.
