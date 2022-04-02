@@ -1,0 +1,30 @@
+.dishes {
+  max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin:0 auto;
+  }
+  
+  .btn {
+    padding: 0rem;
+    font-size: 1rem;
+    
+  }
+ 
+p{
+  max-width: 200px;
+}
+
+.item-wrapper{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .item-wrapper{
+    grid-template-columns: 1fr;
+  }
+}

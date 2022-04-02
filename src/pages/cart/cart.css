@@ -1,0 +1,42 @@
+/* Cart Section */
+
+.cart {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .cart-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cart-item {
+    margin: 2rem 0rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .cart-item .image {
+    flex: 1 1 10rem;
+  }
+  
+  .cart-item img {
+    width: 10rem;
+  }
+  
+  .cart-item .details {
+    flex: 2 1 10rem;
+  }
+  
+  .cart-item .amount {
+    flex: 1 1 10rem;
+  }
+  
+  .cart-empty {
+    position: absolute;
+    top: 48%;
+    left: 40%;
+  }

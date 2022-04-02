@@ -1,0 +1,21 @@
+.dish-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto;
+  }
+  
+  .detail-image > img {
+    width:250px;
+    height:250px;
+    margin-top: 1rem;
+  }
+  
+  .detail-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0 5rem;
+  }

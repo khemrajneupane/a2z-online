@@ -1,0 +1,53 @@
+
+.highlight {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), transparent), url(../../assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 43vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .highlight h3 {
+    padding: 2rem;
+  }
+  
+  .highlight .wrapper {
+    width: 90%;
+    margin: auto;
+  }
+
+h2 {
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+  }
+  
+  h3{
+    
+    font-size: 1.5rem;
+  }
+  .btn {
+    padding: 1rem;
+    background: #022231;
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+    }
+  
+    h3{
+      
+      font-size: 1rem;
+    }
+  }

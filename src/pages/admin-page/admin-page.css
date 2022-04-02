@@ -1,0 +1,61 @@
+.main-wrapper {
+    max-width: 70%;
+    margin: auto;
+    text-align: center;
+  }
+  .header-login{
+    padding: 8px 12px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    font-family: Source Sans Pro, sans-serif;
+    height: 40px;
+    font-size: 16px;
+    border:1px solid #B4B4B4;
+  }
+  .input-group{
+      display: grid;
+  }
+  .input-field{
+    padding-top:16px;
+    display: grid;
+  }
+  label{
+    font-family: Source Sans Pro, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #075170;
+    margin-bottom: 4px;
+  }
+ 
+  .preview {
+    height: 300px;
+    width: 300px
+  }
+
+  .create-btn {
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    background: #022231;
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .create-btn:hover {
+    color:#54c2f0;
+  }
+ 
+.bottom{
+    display:flex;
+    flex-direction: column;
+}
+.checkbox{
+    display:flex;
+    flex-wrap: wrap-reverse;
+   
+}
+.checkbox > input{
+    margin-bottom: -1rem;
+}

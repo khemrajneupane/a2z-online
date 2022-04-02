@@ -1,0 +1,45 @@
+.wrapper {
+    margin-top: 1rem;
+    display:grid;
+    max-width: fit-content;
+    gap: 1rem;
+  }
+
+  .wrapper-inside {
+ max-width:fit-content;
+  }
+
+  .description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-weight: normal;
+    font-size: 16px;
+    color: darkolivegreen;
+    font-weight: 20px;
+    flex-shrink: 1;
+    flex-basis: 80%;
+  }
+ .btn{
+   cursor: pointer;
+ }
+  .btns{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+  }
+  img{
+      max-width:200px;
+      max-height: 200px;
+      display:grid;
+      border-radius: 15%;
+  }
+  
+  .content{
+    display:grid;
+  }
+
+  
+ 
+  

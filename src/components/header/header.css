@@ -1,0 +1,39 @@
+.main-head {
+    background-color:#022231;
+    position: sticky;
+    top:0;
+  }
+  ul {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  nav {
+  
+    align-items: center;
+    height: 100%;
+    padding: 2rem;
+    margin: 0 auto;
+   
+  }
+  
+  nav ul {
+    display: flex;
+    flex: 1 1 40rem;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    
+  }
+  li{
+    font-size: 2rem;
+    border:1px solid #022231;
+  }
+  
+  
+.logger {
+    flex: 2 1 40rem;
+    font-family: sans-serif;
+    color:white;
+    font-size: 2rem;
+  }

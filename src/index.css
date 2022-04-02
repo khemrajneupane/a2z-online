@@ -1,0 +1,25 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&family=Poppins:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0093c7;
+}
+
+:root{
+  --amplify-primary-color:#99adbd;
+  --amplify-primary-tint: #0073c9;
+  --amplify-primary-shade: #0073c9;
+}

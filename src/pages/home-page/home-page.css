@@ -1,0 +1,39 @@
+
+.container{
+  background-color: #cccccc;
+}
+.featured-head {
+  background: #022231;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ margin-top: 1rem;
+}
+.special{
+
+}
+
+.featured-dish {
+  margin: 1rem 0;
+}
+
+.dish-image {
+  padding: 2rem 0rem;
+}
+.dish-image img{
+  height: 200px;
+  width: 200px;
+}
+h1{
+  text-align: center;
+}
+@media only screen and (max-width: 768px) {
+
+  .container{
+    padding:0 1rem;
+  }
+  h3{   
+    font-size: 1rem;
+  }
+}
