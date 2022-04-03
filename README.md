@@ -361,9 +361,12 @@ $ amplify mock function paymentLambda
 
 Figure 20. Amplify mocking Lambda function
 
-or $ amplify invoke paymentLambda however, this version of amplify command is deprecated but
+or ```$ amplify invoke paymentLambda``` however, this version of amplify command is deprecated but
 still outputs the results.
 
+Now that the 'paymentLambda' function is created, we can replace its code with the ready-made one which is in: ```/src/amplify/function/paymentLambda/index.js```
+
+We still need one more 'orderLambda' function, so we can follow the same procedures as above but the ready-made code is in: ```/src/amplify/function/orderLambda/index.js```
 
 **2.7 GraphQL API**
 
@@ -403,6 +406,8 @@ schema template:
 
 Figure 23. Basic GraphQL schema
 
+However, in order to save time, we replace this default ````schema.graphql``` with already prepared code that is in src/amplify/backend/api folder.
+
 **2.8 Mock API**
 
 As a good practice, it is better to run the mock test of the GraphQL API before we actually deploy
@@ -438,11 +443,12 @@ We create GraphQL Schema to define our application’s data model and enhance it
 GraphQL directives to perform more actions. Out of 9 different kinds of directives, we will be using
 only the following which are defined in the Amplify documentation as following (Amplify Docs,
 Directives, 2021):
-@model : Defines top level object types in your API that are backed by Amazon DynamoDB
-@auth: Defines authorization rules for your @model types and fields
-@connection: Defines 1:1, 1:M and N:M relationships between @model types
-@function: Configures a Lambda function resolver for a field
-@key Configures custom index structures for @model types.
+
+- @model : Defines top level object types in your API that are backed by Amazon DynamoDB
+- @auth: Defines authorization rules for your @model types and fields
+- @connection: Defines 1:1, 1:M and N:M relationships between @model types
+- @function: Configures a Lambda function resolver for a field
+- @key Configures custom index structures for @model types.
 
 We will create 4 types of schemas as ‘Dish’,’ DishOrder’, ‘Order’ and custom mutation type
 ‘processOrder’:
