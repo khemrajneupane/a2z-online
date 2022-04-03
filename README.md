@@ -45,6 +45,7 @@ logged in users can make online order and payments, only the admin user is allow
 delete food menus.
 
 ![Architecture design for the product to be created](/src/assets/Picture1.png "Architecture design for the product to be created")
+
 Figure 1. Architecture design for the product to be created
 
 The front-end of this application is done in React and the serverless back-end is covered with AWS
@@ -107,6 +108,7 @@ amplify configure
 ```
 
 ![Amplify Configure](/src/assets/Picture2.png "Amplify Configure")
+
 Figure 2. Amplify Configure
 
 The closest region is a better option to choose from the lists. The username is better to keep as
@@ -115,6 +117,7 @@ meaningful or project specific as possible. In this case, the username is ‘a2z
 Configuration command will ask to sign into the AWS Console
 
 ![IAM user creation with programmatic access type](/src/assets/Picture3.png "IAM user creation with programmatic access type")
+
 Figure 3. IAM user creation with programmatic access type.
 
 and create an IAM user with the help of Amazon IAM service which takes care of managing users,
@@ -133,6 +136,7 @@ however, if we don’t provide any, Amplify is intelligent enough to prepare mor
 configuration.
 
 ![AWS Amplify initialization process](/src/assets/Picture4.png "AWS Amplify initialization process")
+
 Figure 4. AWS Amplify initialization process
 
 Usually, it creates a project name automatically by referring to the project directory name. Provide
@@ -159,6 +163,7 @@ that we have in our ‘config’ file. We choose ‘a2z-user’. It starts addin
 ‘dev’ and start creating basic resources as below:
 
 ![Amplify CLI command triggering CloudFormation to create backend environment](/src/assets/Picture5.png "Amplify CLI command triggering CloudFormation to create backend environment")
+
 Figure 5. Amplify CLI command triggering CloudFormation to create backend environment
 
 Amplify will create many resources in the cloud under the hood by using the CloudFormation stack
@@ -166,21 +171,25 @@ of the AWS Cloud. In the above process, Amplify will create IAM (Identity and Ac
 Management) role for unauthenticated and authenticated users
 
 ![Amplify creating IAM roles for authenticated and unauthenticated users](/src/assets/Picture6.png "Amplify creating IAM roles for authenticated and unauthenticated users")
+
 Figure 6. Amplify creating IAM roles for authenticated and unauthenticated users
 
 along with S3 deployment bucket these resources can be checked in the CloudFormation stacks:
 
 ![CloudFormation showing resources creation in progress](/src/assets/Picture7.png "CloudFormation showing resources creation in progress")
+
 Figure 7. CloudFormation showing resources creation in progress
 
 After the stack formation completes the status changes as in the figure below:
 
 ![CloudFormation showing resources creation completion](/src/assets/Picture8.png "CloudFormation showing resources creation completion")
+
 Figure 8. CloudFormation showing resources creation completion
 
 The S3 bucket will also contain new data after the Amplify initialization completes:
 
 ![Amplify initialization creates data in S3 bucket](/src/assets/Picture9.png "Amplify initialization creates data in S3 bucket")
+
 Figure 9. Amplify initialization creates data in S3 bucket
 
 We did not have to create all those resources but Amplify does that for us through our CLI
@@ -192,6 +201,7 @@ By now, if we check our ‘a2z-online’ project directory, we will notice that 
 one in the root level, which is ‘amplify’ and the other is ‘aws-exports.js’ which is inside the ‘src’ file.
 
 ![Amplify initialization also creates a folder containing different backend for different resources, in the project’s directory ‘A2Z-ONLINE’](/src/assets/Picture10.png "Amplify initialization also creates a folder containing different backend for different resources, in the project’s directory ‘A2Z-ONLINE’")
+
 Figure 10. Amplify initialization also creates a folder containing different backend for different resources, in the project’s directory ‘A2Z-ONLINE’
 
 **amplify folder**
@@ -200,6 +210,7 @@ local AWS and environment configuration related json key-value pairs, along with
 configuration information which we had provided while initializing the project earlier on.
 
 ![Automatic generation of backend config. codes after Amplify initialization](/src/assets/Picture11.png "Automatic generation of backend config. codes after Amplify initialization")
+
 Figure 11. Automatic generation of backend config. codes after Amplify initialization
 
 The back-end folder will contain all the GraphQL schema for AppSync API which we will create
@@ -211,6 +222,7 @@ This file is created inside the ‘src’ folder. It will contain all the key-va
 automatically; we don’t need to modify anything there.
 
 ![Amplify generated aws-exports.js file inside src directory](/src/assets/Picture12.png "Amplify generated aws-exports.js file inside src directory")
+
 Figure 12. Amplify generated aws-exports.js file inside src directory
 
 
@@ -228,12 +240,14 @@ purpose of this application, we go for default configuration with username, pass
 number.
 
 ![Amplify CLI adding authentication](/src/assets/Picture13.png "Amplify CLI adding authentication")
+
 Figure 13. Amplify CLI adding authentication
 
 Now, to see that our authentication works, we need to push this configuration which will create the
 necessary back-end in our local and provision it in the cloud.
 
 ![Amplify CLI creating backend code in the project folder, necessary for authentication](/src/assets/Picture14.png "Amplify CLI creating backend code in the project folder, necessary for authentication")
+
 Figure 14. Amplify CLI creating backend code in the project folder, necessary for authentication
 
 ```
@@ -253,6 +267,7 @@ Then we make few imports and code changes in the front-end code in order to make
 authentication form appear in the UI from where we can perform login, logout, signup operations.
 
 ![React front-end importing from 'aws-export' file to configure and use different AWS resources](/src/assets/Picture15.png "React front-end importing from 'aws-export' file to configure and use different AWS resource")
+
 Figure 15. React front-end importing from ‘aws-export’ file to configure and use different AWS
 resources
 
@@ -261,17 +276,20 @@ we can add authentication to any component in our app. For now, let’s add it t
 components as:
 
 ![Using AmplifyAuthenticator and AmplifySignOut components in the React project](/src/assets/Picture16.png "Using AmplifyAuthenticator and AmplifySignOut components in the React project")
+
 Figure 16. Using AmplifyAuthenticator and AmplifySignOut components in the React project
 
 Then let’s run the app with ‘npm start’; we can see the login form:
 
 ![Ready-to-use login UI created with Amplify authenticator](/src/assets/Picture17.png "Ready-to-use login UI created with Amplify authenticator")
+
 Figure 17. Ready-to-use login UI created with Amplify authenticator
 
 Since there is not any user registered in the Cognito UserPool, so we can create new account from
 the link and verify it with phone number or email then it will be registered like so:
 
 ![AWS Cognito UserPool registering new user](/src/assets/Picture18.png "AWS Cognito UserPool registering new user")
+
 Figure 18. AWS Cognito UserPool registering new user
 
 
@@ -328,6 +346,7 @@ will automatically create lambda functions inside <project-dir>/amplify/back-
 end/function/paymentLambda/src.
 
 ![Amplify add function CLI command creating basic Lambda function](/src/assets/Picture19.png "Amplify add function CLI command creating basic Lambda function")
+
 Figure 19. Amplify add function CLI command creating basic Lambda function
 
 This lambda handler simply returns HTTP status code 200 and string ‘Hello from Lambda!’. Good
@@ -339,6 +358,7 @@ $ amplify mock function paymentLambda
 ```
 
 ![Amplify mocking Lambda function](/src/assets/Picture20.png "Amplify mocking Lambda function")
+
 Figure 20. Amplify mocking Lambda function
 
 or $ amplify invoke paymentLambda however, this version of amplify command is deprecated but
@@ -356,6 +376,7 @@ $ amplify add api
 ```
 
 ![Amplify adding GraphQL API](/src/assets/Picture21.png "Amplify adding GraphQL API")
+
 Figure 21. Amplify adding GraphQL API
 
 With the above configuration, we have created GraphQL API named ‘a2zonline’ with simple
@@ -372,12 +393,14 @@ With this command, we have options to either ‘Walkthrough all configurations�
 authorization types only. In this case, we have chosen to walkthrough all configs, as follow:
 
 ![Amplify CLI command updating API configuration](/src/assets/Picture22.png "Amplify CLI command updating API configuration")
+
 Figure 22. Amplify CLI command updating API configuration
 
 Finally, if we check into amplify/backend folder, we will see api/a2zonline with the following basic
 schema template:
 
 ![Basic GraphQL schema](/src/assets/Picture23.png "Basic GraphQL schema")
+
 Figure 23. Basic GraphQL schema
 
 **2.8 Mock API**
@@ -393,6 +416,7 @@ $ amplify mock api
 ```
 
 ![Configuring for Amplify GraphQL API mocking](/src/assets/Picture24.png "Configuring for Amplify GraphQL API mocking")
+
 Figure 24. Configuring for Amplify GraphQL API mocking
 
 We have configured the mock environment as above and choosen language, queries, mutation
@@ -400,6 +424,7 @@ and subscription file location with simple nesting. The GraphQL editor will be r
 [http://localhost:20002/](http://localhost:20002/) where we can perform all sorts of GraphQL operations for testing purposes.
 
 ![GraphQL mocking in localhost](/src/assets/Picture25.png "GraphQL mocking in localhost")
+
 Figure 25. GraphQL mocking in [http://localhost:](http://localhost:)
 
 
@@ -425,6 +450,7 @@ We will create 4 types of schemas as ‘Dish’,’ DishOrder’, ‘Order’ an
 **2.9.1 Type Dish**
 
 ![The GraphQL schema ‘Dish’ type](/src/assets/Picture26.png "The GraphQL schema ‘Dish’ type")
+
 Figure 26. The GraphQL schema ‘Dish’ type
 
 In the above schema, the @auth directive contains many rules handled by Cognito User Pool:
@@ -448,6 +474,7 @@ The auth rules implied:
     identified with their registered emails in this case.
 
 ![The GraphQL schema ‘Order’ type](/src/assets/Picture27.png "The GraphQL schema ‘Order’ type")
+
 Figure 27. The GraphQL schema ‘Order’ type
 
 We also add @key directive to identify the user who makes the order and also it refers to the ‘user’
@@ -463,6 +490,7 @@ our case), address etc. are checked in the make order process and for successful
 unsuccessful payments, it creates the status of ‘DONE’ or ‘FAILED’:
 
 ![GraphQL custom ’Mutation’ type](/src/assets/Picture28.png "GraphQL custom ’Mutation’ type")
+
 Figure 28. GraphQL custom ’Mutation’ type
 
 ‘paymentLambda’ function will be executed and once the payment is successful, it will invoke
@@ -495,6 +523,7 @@ This is a N:M (many-to-many) relationship scenario where every order for dishes 
 this third table. This type is required because a user can have many orders for many dishes.
 
 ![GraphQL custom DishOrder type to create bridge table](/src/assets/Picture29.png "GraphQL custom DishOrder type to create bridge table")
+
 Figure 29. GraphQL custom DishOrder type to create bridge table
 
 When an order is made, we need this table to keep the record of the orders and dish by their ids.
@@ -546,23 +575,27 @@ Since, only the user from Admin group is authorized to perform CRUD operation on
 hence when we test submitting foodmenu as a normal logged in user, we get the following error:
 
 ![Dish creation not authorized example](/src/assets/Picture30.png "Dish creation not authorized example")
+
 Figure 30. Dish creation not authorized example
 
 From amplify console, we need to add this normal user to the Admin group. In our case, we have
 ‘testuser’ as user member of Admin group.
 
 ![Adding the user to Admin group to enable dish creation](/src/assets/Picture31.png "Adding the user to Admin group to enable dish creation")
+
 Figure 31. Adding the user to Admin group to enable dish creation
 
 Since we have added the user to the Admin group, we can add new foodmenu item from admin
 page. This time, the item is saved in DynamoDB and also in S3 bucket.
 
 ![Item created in DynamoDB by the user member of Admin group](/src/assets/Picture32.png "Item created in DynamoDB by the user member of Admin group")
+
 Figure 32. Item created in DynamoDB by the user member of Admin group
 
 In S3 bucket, the admin created item is located in:
 
 ![Item created in S3 bucket by the user member of Admin group](/src/assets/Picture33.png "Item created in S3 bucket by the user member of Admin group")
+
 Figure 33. Item created in S3 bucket by the user member of Admin group
 
 However, this directory has no public access:
@@ -571,6 +604,7 @@ However, this directory has no public access:
 So, we can edit the bucket policy and allow public access to images folder:
 
 ![Policy creating public access to the S3 bucket](/src/assets/Picture34.png "Policy creating public access to the S3 bucket")
+
 Figure 34. Policy creating public access to the S3 bucket
 
 After the access rights are fixed, we can easily view them in the React front-end home page:
@@ -585,6 +619,7 @@ We can now select items and put them into cart. However, payment part is still n
 stage, if we try hitting payment button, we will get the following errors:
 
 ![Stripe payment error example](/src/assets/Picture36.png "Stripe payment error example")
+
 Figure 36. Stripe payment error example
 
 This is because we still need to import stripe into this file:
@@ -594,6 +629,7 @@ to perform Cognito AdminGetUser. Hence, we can allow this function to access Cog
 From amplify console, we can go to functions and choose paymentLambda and view in lambda.
 
 ![Configuring ’paymentLambda’ function to perform Cognito AdminGetUser](/src/assets/Picture37.png "Configuring ’paymentLambda’ function to perform Cognito AdminGetUser")
+
 Figure 37. Configuring ’paymentLambda’ function to perform Cognito AdminGetUser
 
 From Configuration tab, choose Permission, which will show you the function execution role name.
@@ -601,6 +637,7 @@ Follow this name link which will open in IAM console where we need to add inline
 Cognito User Pool.
 
 ![The process or adding Cognito User Pool permission to Lambda function](/src/assets/Picture38.png "The process or adding Cognito User Pool permission to Lambda function")
+
 Figure 38. The process or adding Cognito User Pool permission to Lambda function
 
 We need to select reading access levels for ‘AdminGetUser’.
@@ -667,6 +704,7 @@ Once the payment is successful, we can log in to the stripe dashboard and make s
 registered there.
 
 ![Successful Stripe payment example from Stripe payment dashboard](/src/assets/Picture39.png "Successful Stripe payment example from Stripe payment dashboard")
+
 Figure 39. Successful Stripe payment example from Stripe payment dashboard
 
 
