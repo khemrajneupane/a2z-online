@@ -406,7 +406,7 @@ schema template:
 
 Figure 23. Basic GraphQL schema
 
-However, in order to save time, we replace this default ````schema.graphql``` with ready-made code that is in: ```src/amplify/backend/api/a2zonline/schema.graphql``` folder.
+However, in order to save time, we replace this default ```schema.graphql``` with ready-made code that is in: ```src/amplify/backend/api/a2zonline/schema.graphql``` folder.
 
 **2.8 Mock API**
 
