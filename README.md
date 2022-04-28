@@ -736,3 +736,15 @@ registered there.
 Figure 39. Successful Stripe payment example from Stripe payment dashboard
 
 
+**5 Conclusion:**
+As there are a number of serverless services to choose from however, Amplify, being a framework designed especially with full compatibility with AWS cloud to quickly prototyping and creating MVP instantly, AWS and Amplify go together.
+
+AWS also offers pay-per-use billing system, free-tier offers, and easy integration of serverless services.The serverless full stack development, by using AWS Amplify, along with related AWS resources, is a better choice to meet the business constraints of small and  startup IT companies. Another benefit is that using Amplify framework to create serverless backend infrastructures in AWS can be done easily and anyone who is just a basic user of AWS cloud can significantly contribute to creating it. 
+
+The AWS Amplify is suitable for serverless full stack development, which takes care of creating all the required resources like- storage, API, serverless lambda functions and the hassle-free deployment in the cloud, just by using its related CLI commands. Installation of required tools are also very easy and straightforward and the cost of creating an account using AWS resources are mostly free of cost for the free-tier account that remains valid for a year.
+
+This project work as a guideline or guiding resource for any companies or even individual developers to learn the way to create a full-stack web application backed by React JS in the front-end and AWS Amplify generated GraphQL API in the back-end connected to the DynamoDB, S3 buckets along with the role of Cognito User pool for user management, IAM roles etc.
+
+Ultimately, application development walkthrough or guidelines develops into a fully working application. This repository contains all the step-by-step guidelines from the scratch to the finish. Upon following this guidelines, the user will be able to create a basic functioning restaurant app in serverless full-stack environment.
+
+**Happy Amplifying !**
