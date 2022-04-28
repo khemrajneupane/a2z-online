@@ -736,7 +736,8 @@ registered there.
 Figure 39. Successful Stripe payment example from Stripe payment dashboard
 
 
-**5 Conclusion:**
+**5. Conclusion:**
+
 As there are a number of serverless services to choose from however, Amplify, being a framework designed especially with full compatibility with AWS cloud to quickly prototyping and creating MVP instantly, AWS and Amplify go together.
 
 AWS also offers pay-per-use billing system, free-tier offers, and easy integration of serverless services.The serverless full stack development, by using AWS Amplify, along with related AWS resources, is a better choice to meet the business constraints of small and  startup IT companies. Another benefit is that using Amplify framework to create serverless backend infrastructures in AWS can be done easily and anyone who is just a basic user of AWS cloud can significantly contribute to creating it. 
