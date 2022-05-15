@@ -84,13 +84,20 @@ advised to turn on MFA to secure unauthorized login.
 
 **2.3 Creating Project (a2z-online)**
 
-Initialize a React project or clone the current repo: https://github.com/khemrajneupane/a2z-
+Initialize a React project
+
+```
+npx create-react-app a2z-online
+```
+
+or clone the current repo: https://github.com/khemrajneupane/a2z-
 online.git.
 For our purpose, it is better and easier to clone the repo and start the app.
 
 ```
 git clone https://github.com/khemrajneupane/a2z-online.git
 cd a2z-online
+npm install
 
 ```
 
@@ -555,13 +562,27 @@ queries.js and schema.json files along with the greatest number of other resourc
 When the process finishes, we can look into the aws-exports.js file and see that it has created a lot
 of key-values json object some of which will be used in the project later.
 
-# **3. React front-end**
+# **3. Environment variables**
+
+Some secret keys and ids require them to be used in a secured place. We don’t’ want to show them in the code as they can be visible in the GitHub code repo, which can cause some vulnerabilities. The best way to set those secrets are to put them in the environment variables of lambda functions.
+
+```
+const ORDER_TABLE = process.env.ORDER_TABLE; 
+const DISH_ORDER_TABLE = process.env.DISH_ORDER_TABLE;
+const USER_POOL_ID = process.env.USER_POOL_ID;
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+```
+![Putting secrets to environment variables in lambda functions](/src/assets/Picture301.png "Dish creation not authorized example")
+
+Figure 30. Dish creation not authorized example
+
+# **4. React front-end**
 
 In this section, we will delve deep into the front-end part of the React project to understand how the
 CRUD operations are being called from different components.
 
 
-**3.1 Submitting food menu from admin page:**
+**4.1 Submitting food menu from admin page:**
 
 Admin page is designed to create dish entries in the database. This page requires login as admin
 because we have used AmplifyAuthenticator component imported from aws-amplify/ui-react. Any
@@ -618,6 +639,7 @@ After the access rights are fixed, we can easily view them in the React front-en
 ![React front-end UI view, after the images are added in S3 and given public access
 policy](/src/assets/Picture35.png "React front-end UI view, after the images are added in S3 and given public access
 policy")
+
 Figure 35. React front-end UI view, after the images are added in S3 and given public access
 policy
 
@@ -650,7 +672,7 @@ We need to select reading access levels for ‘AdminGetUser’.
 Likewise, we have ‘orderLambda’ function that needs to have access to the DynamoDB. Hence,
 we can attach one more IAM policy to this function with DynamoDB full access.
 
-**3.2 Cart**
+**4.2 Cart**
 
 Items can be picked from home page or all dishes page and added to the cart for payment. The
 cart is an array that contains cart items as:
@@ -672,7 +694,7 @@ history.push("/");
 }, [checkout, clearCart, history, orderDetails]);
 ```
 
-**3.3 Stripe Payment:**
+**4.3 Stripe Payment:**
 
 Stripe payment is very easy to integrate into React and Node project with its simple-to-use API and
 rich documentation. It has free test mode that is so useful to test the payment and transaction
@@ -714,3 +736,16 @@ registered there.
 Figure 39. Successful Stripe payment example from Stripe payment dashboard
 
 
+**5. Conclusion:**
+
+As there are a number of serverless services to choose from however, Amplify, being a framework designed especially with full compatibility with AWS cloud to quickly prototyping and creating MVP instantly, AWS and Amplify go together.
+
+AWS also offers pay-per-use billing system, free-tier offers, and easy integration of serverless services.The serverless full stack development, by using AWS Amplify, along with related AWS resources, is a better choice to meet the business constraints of small and  startup IT companies. Another benefit is that using Amplify framework to create serverless backend infrastructures in AWS can be done easily and anyone who is just a basic user of AWS cloud can significantly contribute to creating it. 
+
+The AWS Amplify is suitable for serverless full stack development, which takes care of creating all the required resources like- storage, API, serverless lambda functions and the hassle-free deployment in the cloud, just by using its related CLI commands. Installation of required tools are also very easy and straightforward and the cost of creating an account using AWS resources are mostly free of cost for the free-tier account that remains valid for a year.
+
+This project work as a guideline or guiding resource for any companies or even individual developers to learn the way to create a full-stack web application backed by React JS in the front-end and AWS Amplify generated GraphQL API in the back-end connected to the DynamoDB, S3 buckets along with the role of Cognito User pool for user management, IAM roles etc.
+
+Ultimately, application development walkthrough or guidelines develops into a fully working application. This repository contains all the step-by-step guidelines from the scratch to the finish. Upon following this guidelines, the user will be able to create a basic functioning restaurant app in serverless full-stack environment.
+
+**Happy Amplifying !**
