@@ -1,11 +1,10 @@
 const { v4: uuidv4 } = require("uuid");
 const AWS = require("aws-sdk");
 const documentClient = new AWS.DynamoDB.DocumentClient();
-
 const ORDER_TABLE = process.env.ORDER_TABLE; 
+const DISH_ORDER_TABLE = process.env.DISH_ORDER_TABLE;
 
 const ORDER_TYPE = "Order";
-const DISH_ORDER_TABLE = process.env.DISH_ORDER_TABLE;
 const DISH_ORDER_TYPE = "DishOrder";
 const registerOrder = async (payload) => {
   const { order_id, username, email, total } = payload;
